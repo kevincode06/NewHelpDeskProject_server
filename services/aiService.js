@@ -1,6 +1,6 @@
 const { GoogleGenerativeAI} =  require('@google/generative-ai');
 
-const genAI = new GoogleGenerativeAI(process,env.AI_API_KEY  || 'AIzaSyCXdeLIeqiGGhQdjo95K7Mvwviv6nAZwFY')
+const genAI = new GoogleGenerativeAI(process.env.AI_API_KEY  || 'AIzaSyCXdeLIeqiGGhQdjo95K7Mvwviv6nAZwFY')
 
 const getAPIResponse = async (userMessage, ticketContext = []) => {
     // check for 'support' keyword to escalate to human agent

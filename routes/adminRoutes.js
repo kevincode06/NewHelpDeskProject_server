@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getAllTickets, updateTicketStatus, adminReply, getStats } = require('../controllers/adminController');
 const { protect } = require('../middleware/authMiddleware');
-const { adminOnly } = require('../middleware/adminMiddleware');
+const { adminOnly } = require('../middleware/roleMiddleware');
 
 
 router.get('/tickets', protect, adminOnly, getAllTickets);

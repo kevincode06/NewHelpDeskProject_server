@@ -1,4 +1,4 @@
-const Ticket = require('../models/Ticket');
+const Ticket = require('../models/Tickets');
 const User = require('../models/User');
 
 // @desc    Get all tickets (admin only)

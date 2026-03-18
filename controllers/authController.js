@@ -1,6 +1,6 @@
-const User = required('../models/User');
-const generateToken = required('../utils/generateToken');
-const { validationResult } = required('express-validator');
+const User = require('../models/User');
+const generateToken = require('../utils/generateToken');
+const { validationResult } = require('express-validator');
 
 // @desc    Register a new user
 // @route   POST /api/auth/register

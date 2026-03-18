@@ -1,4 +1,4 @@
-const ticket = require('../models/Tickets');
+const Ticket = require('../models/Tickets');
 const { getAIResponse } = require('../services/aiService');
 const { validationResult } = require('express-validator');
 
@@ -12,7 +12,7 @@ const createTicket = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { tittle, message } = req.body;
+    const { title, message } = req.body;
 
     try {
         // Generate AI response
@@ -21,7 +21,7 @@ const createTicket = async (req, res) => {
         // Create new ticket with ai response
         const ticket = await Ticket.create({
             user: req.user._id,
-            tittle,
+            title,
             message,
             messages: [
                 { sender: 'user', content: message },
