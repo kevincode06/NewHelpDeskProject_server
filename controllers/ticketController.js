@@ -22,7 +22,6 @@ const createTicket = async (req, res) => {
         const ticket = await Ticket.create({
             user: req.user._id,
             title,
-            message,
             messages: [
                 { sender: 'user', content: message },
                 { sender: 'ai', content: aiResult.reply}
@@ -87,7 +86,7 @@ const addMessageToTicket = async (req, res) => {
             return res.status(404).json({ message: 'Ticket not found' });
         }
 
-    if (ticket.user.toString() !== req.user._id.toString()) {
+    if (ticket.user._id.toString() !== req.user._id.toString()) {
         return res.status(403).json({ message: 'Not authorized' });
     }
 

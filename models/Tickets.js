@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const messageSchema = new mongoose.Schema({ 
     sender: { type: String, enum: ['user', 'ai', 'admin'], required: true },
     content: { type: String, required: true },
-    timestamps: { type: Date, default: Date.now },
+   createdAt: { type: Date, default: Date.now },
 }); 
 
 const ticketSchema = new mongoose.Schema({

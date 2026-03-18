@@ -2,7 +2,7 @@ const { GoogleGenerativeAI} =  require('@google/generative-ai');
 
 const genAI = new GoogleGenerativeAI(process.env.AI_API_KEY  || 'AIzaSyCXdeLIeqiGGhQdjo95K7Mvwviv6nAZwFY')
 
-const getAPIResponse = async (userMessage, ticketContext = []) => {
+const getAIResponse = async (userMessage, ticketContext = []) => {
     // check for 'support' keyword to escalate to human agent
     if (userMessage.toLowerCase().includes('support')) {
         return {
@@ -43,7 +43,7 @@ return {
     }
     // Fallback response in case of API failure
     return {
-        return: "I apologize, but I'm having trouble processing your request. Please try again or type 'support' to speak with a human agent.",
+        reply: "I apologize, but I'm having trouble processing your request. Please try again or type 'support' to speak with a human agent.",
         escalate: false
        };
     }
@@ -54,7 +54,7 @@ return {
         try {
             const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
             
-            const conversation = message.map(m => `${m.sender}: "${m.content}"`).join('\n');
+            const conversation = messages.map(m => `${m.sender}: "${m.content}"`).join('\n');
 
             const prompt = `Summarize this support ticket conversation in 2-3 sentences. Identify the main issue and current status:${conversation} Summary:`;
   
@@ -68,4 +68,4 @@ return {
         }  
     };
 
-    module.exports = { getAPIResponse, generateTicketSummary };
+    module.exports = { getAIResponse, generateTicketSummary };
