@@ -36,7 +36,7 @@ const updateTicketStatus = async (req, res) => {
     }
 
     ticket.status = status;
-    if (status === 'in-progress' && !ticket.assignedTo) {
+    if (status === 'in_progress' && !ticket.assignedTo) {
       ticket.assignedTo = req.user._id;
     }
 
@@ -61,7 +61,7 @@ const adminReply = async (req, res) => {
     }
 
     ticket.messages.push({ sender: 'admin', content });
-    ticket.status = 'in-progress';
+    ticket.status = 'in_progress';
 
     await ticket.save();
     res.json(ticket);
@@ -77,15 +77,15 @@ const getStats = async (req, res) => {
   try {
     const totalTickets = await Ticket.countDocuments();
     const openTickets = await Ticket.countDocuments({ status: 'open' });
-    const inProgressTickets = await Ticket.countDocuments({ status: 'in-progress' });
-    const resolvedTickets = await Ticket.countDocuments({ status: 'resolved' });
+    const inProgressTickets = await Ticket.countDocuments({ status: 'in_progress' });
+    const resolvedTickets = await Ticket.countDocuments({ status: 'closed' });
     const escalatedTickets = await Ticket.countDocuments({ isEscalated: true });
 
     res.json({
       total: totalTickets,
       open: openTickets,
       inProgress: inProgressTickets,
-      resolved: resolvedTickets,
+      resolved: closedTickets,
       escalated: escalatedTickets
     });
   } catch (error) {
