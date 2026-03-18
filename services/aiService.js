@@ -1,6 +1,6 @@
 const { GoogleGenerativeAI} =  require('@google/generative-ai');
 
-const genAI = new GoogleGenerativeAI(process.env.AI_API_KEY  || 'AIzaSyCXdeLIeqiGGhQdjo95K7Mvwviv6nAZwFY')
+const genAI = new GoogleGenerativeAI(process.env.AI_API_KEY);
 
 const getAIResponse = async (userMessage, ticketContext = []) => {
     // check for 'support' keyword to escalate to human agent
@@ -12,7 +12,7 @@ const getAIResponse = async (userMessage, ticketContext = []) => {
     }
 
     try { 
-        const model = genAI.getGenerativeModel ({ model: 'gemini-1.5-flash'}); 
+        const model = genAI.getGenerativeModel ({ model: 'gemini-2.0-flash'}); 
 
 
         // Combine user message with ticket context for better response
@@ -52,7 +52,7 @@ return {
     // Function to generate ticket summary for admins
     const generateTicketSummary = async (messages) => {
         try {
-            const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+            const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
             
             const conversation = messages.map(m => `${m.sender}: "${m.content}"`).join('\n');
 
