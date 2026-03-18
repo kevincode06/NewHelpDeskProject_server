@@ -1,4 +1,4 @@
-const User = required('..models/User');
+const User = required('../models/User');
 const generateToken = required('../utils/generateToken');
 const { validationResult } = required('express-validator');
 
