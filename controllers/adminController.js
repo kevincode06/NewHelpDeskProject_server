@@ -78,14 +78,14 @@ const getStats = async (req, res) => {
     const totalTickets = await Ticket.countDocuments();
     const openTickets = await Ticket.countDocuments({ status: 'open' });
     const inProgressTickets = await Ticket.countDocuments({ status: 'in_progress' });
-    const resolvedTickets = await Ticket.countDocuments({ status: 'closed' });
+    const closedTickets = await Ticket.countDocuments({ status: 'closed' });
     const escalatedTickets = await Ticket.countDocuments({ isEscalated: true });
 
     res.json({
       total: totalTickets,
       open: openTickets,
       inProgress: inProgressTickets,
-      resolved: closedTickets,
+      closed : closedTickets,
       escalated: escalatedTickets
     });
   } catch (error) {
